@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Crea_Annuncio</title>
+</head>
+<body>
+<header>
+  <nav>
+    <div class="buttons">
+      <div>
+        <h1 class="home_label" (click)="redirectTo('')" >Compracasa.it</h1>
+      </div>
+      <div>
+          <button type="button" (click)="redirectTo('TermsandCondition')">Segnala Problema</button>
+
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="container">
+  <div class="left_container" >
+    <div class="subleft_container" id="char_container">
+      <p id="percentLabel">25% Completato</p>
+      <h2>Nuovo Annuncio</h2>
+    </div>
+    <nav>
+      <div class="subleft_container" (click)="redirectTo('/Pubblica_Annuncio/Tipologia e Località')">
+        <p>Tipologia e Località</p>
+        <progress value="100" max="100" class="bars"></progress>
+      </div>
+      <div class="subleft_container" id="actualDiv">
+        <p>Caratteristiche</p>
+        <progress value="0" max="100" class="bars" id="charactheristics_bar"></progress>
+      </div>
+      <div class="subleft_container" (click)="checkRequired('/Pubblica_Annuncio/Depositi/Prezzo e Descrizione')">
+        <p>Prezzi e Descrizione</p>
+        <progress value="0" max="100" class="bars"></progress>
+      </div>
+      <div class="subleft_container" (click)="checkRequired('/Pubblica_Annuncio/Contatti')">
+        <p>Contatti</p>
+        <progress value="0" max="100" class="bars"></progress>
+      </div>
+      <button type="button" id="announcment_button" class="cliccable" (click)="redirectTo('MyAnnouncements')">I Tuoi Annunci</button>
+    </nav>
+  </div>
+  <form>
+    <div class="fields">
+      <div>
+        <h2>Nuovo Annuncio</h2>
+        <h3>Caratteristiche:</h3>
+        <h3>Superficie (obbligatorio)</h3>
+        <input type="text" placeholder="Superficie in metri quadrati..." id="surface" name="surface" [(ngModel)]="charFormData.surface" class="required" (change)="upgradeCharBar()">
+        <p class="warning">Campo obbligatorio</p>
+      </div>
+      <div>
+        <h3>Piano (obbligatorio)</h3>
+        <select id="floors" class="required" name="floor" [(ngModel)]="charFormData.floor" (change)="upgradeCharBar()">
+          <option value="" disabled selected style="display:none;">Seleziona Piano</option>
+          <option value="-1">-1</option>
+          <option value="-2">-2</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+        </select>
+        <p class="warning">Campo obbligatorio</p>
+      </div>
+      <div>
+        <h3>Dettagli Aggiuntivi</h3>
+        <div class="horizzontal">
+          <input type="checkbox" name="square" [(ngModel)]="charFormData.square" class="checkboxes">
+          <p>Piazzale</p>
+        </div>
+        <div class="horizzontal">
+          <input type="checkbox" name="office" [(ngModel)]="charFormData.office" class="checkboxes">
+          <p>Ufficio</p>
+        </div>
+        <div class="horizzontal">
+          <input type="checkbox" name="garage" [(ngModel)]="charFormData.garage" class="checkboxes">
+          <p>Box/Garage</p>
+        </div>
+        <div class="horizzontal" id="last">
+          <input type="checkbox" name="alarm" [(ngModel)]="charFormData.alarm" class="checkboxes">
+          <p>Impianto di Allarme</p>
+        </div>
+      </div>
+      <div class="vertical">
+        <h3>Composizione (obbligatorio)</h3>
+        <select id="bathrooms" class="required" name="bathrooms" [(ngModel)]="charFormData.bathrooms" (change)="upgradeCharBar()">
+          <option value="" disabled selected style="display:none;">Numero Bagni</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+        <p class="warning" id="specialWarning">Campo obbligatorio</p>
+        <div class="horizzontal" id="disabledBathroom">
+          <input type="checkbox" name="disableBathroom" [(ngModel)]="charFormData.disableBathroom" class="checkboxes">
+          <p>Bagno per disabili</p>
+        </div>
+      </div>
+      <div>
+        <h3 id="shorter">Riscaldamento</h3>
+        <div>
+          <label>
+            <input type="radio" name="warming" [(ngModel)]="charFormData.warming" value="autonomous" class="radio">
+            <span class="radio-custom"></span>
+            Autonomo
+          </label>
+        </div>
+        <div>
+          <label>
+            <input type="radio" name="warming" [(ngModel)]="charFormData.warming" value="centralized" class="radio">
+            <span class="radio-custom"></span>
+            Centralizzato
+          </label>
+        </div>
+        <div>
+          <label>
+            <input type="radio" name="warming" [(ngModel)]="charFormData.warming" value="absent" class="radio">
+            <span class="radio-custom"></span>
+            Assente
+          </label>
+        </div>
+      </div>
+      <div>
+        <h3>Classe energetica (obbligatorio)</h3>
+        <select id="energy" class="required"  name="energyClass" [(ngModel)]="charFormData.energyClass" (change)="upgradeCharBar()">
+          <option value="" disabled selected style="display:none;">Seleziona un'opzione</option>
+          <optgroup label="A">
+            <option value="A1">A1</option>
+            <option value="A2">A2</option>
+            <option value="A3">A3</option>
+            <option value="A4">A4</option>
+          </optgroup>
+          <option value="B">B</option>
+          <option value="C">C</option>
+          <option value="D">D</option>
+          <option value="E">E</option>
+          <option value="F">F</option>
+          <option value="G">G</option>
+        </select>
+        <p class="warning">Campo obbligatorio</p>
+      </div>
+      <div>
+        <h3>Stato dell'immobile (obbligatorio)</h3>
+        <select id="state" class="required"  name="propertyState" [(ngModel)]="charFormData.propertyState" (change)="upgradeCharBar()">
+          <option value="" disabled selected style="display:none;">Seleziona un'opzione</option>
+          <option value="Nuovo">Nuovo</option>
+          <option value="Ottimo e Ristrutturato">Ottimo e Ristrutturato</option>
+          <option value="Buono e abitabile">Buono e abitabile</option>
+          <option value="Da ristrutturare">Da ristrutturare</option>
+        </select>
+        <p class="warning">Campo obbligatorio</p>
+      </div>
+      <nav>
+        <button type="button" id="verify_button" class="cliccable"
+                (click)="checkRequired('/Pubblica_Annuncio/Depositi/Prezzo e Descrizione')">
+          Prosegui
+        </button>
+      </nav>
+    </div>
+  </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,235 @@
+
+header {
+  background-color: steelblue;
+  background-size: cover; /* Adatta l'immagine di sfondo per coprire l'intero header */
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.home_label:hover {
+  cursor: pointer;
+}
+
+.home_label {
+  color: white;
+}
+
+button {
+  background-color: steelblue;
+  border-color: steelblue;
+  border-width: 0;
+  border-radius: 5px;
+  color: white;
+  width: fit-content;
+  height: 80px;
+  font-family: "Arial Black", sans-serif;
+  padding: 20px;
+  font-size: 16px;
+}
+
+.buttons button:hover {
+  cursor: pointer;
+  border-bottom-color: white;
+  border-bottom-width: 5px;
+}
+#first_container{
+  background-color: whitesmoke;
+}
+.left_container {
+  width: 300px;
+}
+
+.subleft_container {
+  text-align: center;
+  border: 1px solid lightgray;
+}
+
+#announcment_button {
+  margin-left: 30px;
+}
+
+.bars {
+  height: 15px;
+  margin-bottom: 10px;
+}
+
+#announcment_button {
+  height: 40px;
+  width: 236px;
+  padding: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#announcment_button:hover {
+  background-color: #0056b3;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin-left: 20px;
+}
+
+/* Media queries per la responsività */
+
+.fields {
+  margin-left: 50px;
+  flex-grow: 1;
+}
+
+select, input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 100%;
+  max-width: 40%;
+}
+
+.warning {
+  font-size: 15px;
+  color: #c11e3d;
+  margin-bottom: 0px;
+}
+
+#civic_number {
+  max-width: 5%;
+  text-align: center;
+}
+
+#address {
+  max-width: 30%;
+  margin-right: 15px;
+}
+
+#verify_button {
+  width: 40%;
+  height: 50px;
+  padding: 0;
+  background-color: #c12400;
+  margin-top: 20px;
+  margin-left: 10px;
+
+}
+
+#verify_button:hover {
+  background-color: darkred;
+}
+
+.cliccable:hover {
+  cursor: pointer;
+}
+#actualDiv{
+  background-color: lightsteelblue;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+label {
+  font-family: "Arial", sans-serif;
+  font-size: 23px;
+  cursor: pointer;
+  vertical-align: middle; /* Allinea verticalmente il contenuto */
+}
+
+/* Stile del radio button personalizzato */
+.radio-custom {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-color: #fff;
+  border: 2px solid slategray; /* Colore del bordo delle radio button */
+  border-radius: 50%;
+  position: relative;
+  vertical-align: sub;
+  margin-right: 10px;
+  margin-top: 15px;
+}
+
+/* Stile del punto interno */
+.radio-custom::after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background-color: steelblue; /* Colore del pallino interno */
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Quando il radio button è selezionato */
+input[type="radio"]:checked + .radio-custom::after {
+  opacity: 1;
+}
+
+@media screen and (max-width: 480px) {
+  .fields {
+    margin-left: 10px;
+  }
+
+  #civic_number {
+    max-width: 30%;
+  }
+
+  #address {
+    max-width: 30%;
+  }
+
+  label {
+    font-size: 16px; /* Riduci ulteriormente la dimensione del font su schermi dei telefoni */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .left_container {
+    width: 100%;
+  }
+
+  .buttons {
+    flex-direction: column; /* Impila i pulsanti verticalmente su schermi più piccoli */
+    align-items: center;
+  }
+
+  button {
+    height: auto;
+    margin-bottom: 10px;
+  }
+
+  .container {
+    margin-left: 0; /* Rimuovi il margine laterale per posizionare il contenitore al centro */
+  }
+
+  .fields {
+    margin-left: 20px;
+  }
+
+  select {
+    max-width: 100%;
+  }
+
+  #civic_number {
+    max-width: 20%;
+  }
+
+  #address {
+    max-width: 20%;
+  }
+
+  #verify_button {
+    width: 100%;
+  }
+
+  label {
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,3 @@
+<div id="map" style="height: 400px;"></div>
+<pre *ngIf="isValidPosition(selectedPosition)">Posizione Selezionata: {{ selectedPosition | json }}</pre>
+<pre *ngIf="!isValidPosition(selectedPosition)">Posizione non valida</pre>

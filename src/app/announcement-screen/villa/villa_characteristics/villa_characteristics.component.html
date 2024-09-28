@@ -1,0 +1,226 @@
+<!doctype html>
+<html>z
+<head>
+  <meta charset="UTF-8">
+  <title>Crea_Annuncio</title>
+</head>
+<body>
+<header>
+  <nav>
+    <div class="buttons">
+      <div>
+        <h1 class="home_label" (click)="redirectTo('')" >Compracasa.it</h1>
+      </div>
+      <div>
+          <button type="button" (click)="redirectTo('TermsandCondition')">Segnala Problema</button>
+
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="container">
+  <div class="left_container">
+    <div class="subleft_container" id="char_container">
+      <p id="percentLabel">25% Completato</p>
+      <h2>Nuovo Annuncio</h2>
+    </div>
+    <nav>
+      <div class="subleft_container" (click)="redirectTo('/Pubblica_Annuncio/Tipologia e Località')">
+        <p class="left_labels">Tipologia e Località</p>
+        <progress value="100" max="100" class="bars"></progress>
+      </div>
+      <div class="subleft_container" id="actualDiv">
+        <p class="left_labels">Caratteristiche</p>
+        <progress value="0" max="100" class="bars" id="charactheristics_bar"></progress>
+      </div>
+      <div class="subleft_container" (click)="checkRequired('/Pubblica_Annuncio/Ville/Prezzo e Descrizione')">
+        <p class="left_labels">Prezzi e Descrizione</p>
+        <progress value="0" max="100" class="bars"></progress>
+      </div>
+      <div class="subleft_container" (click)="checkRequired('/Pubblica_Annuncio/Contatti')">
+        <p class="left_labels">Contatti</p>
+        <progress value="0" max="100" class="bars"></progress>
+      </div>
+      <button type="button" id="announcment_button" class="cliccable" (click)="redirectTo('MyAnnouncements')">I Tuoi Annunci</button>
+    </nav>
+  </div>
+  <form>
+    <div class="fields">
+      <div>
+        <h2>Nuovo Annuncio</h2>
+        <h3>Caratteristiche:</h3>
+        <h3>Superficie (obbligatorio)</h3>
+        <input type="text" placeholder="Superficie in metri quadrati..." name="surface" [(ngModel)]="charFormData.surface" id="surface" class="required" (change)="upgradeCharBar()">
+        <p class="warning">Campo obbligatorio</p>
+      </div>
+      <div>
+        <h3>Piani (obbligatorio)</h3>
+        <select id="floors" class="required" name="floors" [(ngModel)]="charFormData.floors" (change)="upgradeCharBar()">
+          <option value="" disabled selected style="display:none;">Seleziona Piano</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+        <p class="warning">Campo obbligatorio</p>
+      </div>
+      <div class="vertical">
+        <h3 id="localsh3">Locali (obbligatorio)</h3>
+        <select id="bedrooms" name="bedrooms" [(ngModel)]="charFormData.bedrooms" class="required" (change)="upgradeCharBar()">
+          <option value="" disabled selected style="display:none;">Numero Camere da letto</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+        <p class="warning">Campo obbligatorio</p>
+        <select id="bathrooms" name="bathrooms" [(ngModel)]="charFormData.bathrooms" class="required" (change)="upgradeCharBar()">
+          <option value="" disabled selected style="display:none;">Numero Bagni</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+        <p class="warning">Campo obbligatorio</p>
+        <select id="kitchens" name="kitchens" [(ngModel)]="charFormData.kitchens" class="required" (change)="upgradeCharBar()">
+          <option value="" disabled selected style="display:none;">Numero Cucine</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+        <p class="warning">Campo obbligatorio</p>
+        <div class="horizzontal">
+          <input type="checkbox" name="hall" [(ngModel)]="charFormData.hall" class="checkboxes">
+          <p>Soggiorno</p>
+        </div>
+        <div class="horizzontal" id="specialCheck">
+          <input type="checkbox" name="disableBathroom" [(ngModel)]="charFormData.disableBathroom" class="checkboxes">
+          <p>Bagno per disabili</p>
+        </div>
+        </div>
+      <div class="vertical">
+        <h3 id="shorter3">Posti auto</h3>
+        <select id="car_garages" name="internalCarPlaces" [(ngModel)]="charFormData.internalCarPlaces" class="united">
+          <option value="" disabled selected style="display:none;">Posti Auto Interni</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+        </select>
+        <select id="car_outside" name="externalCarPlaces" [(ngModel)]="charFormData.externalCarPlaces">
+          <option value="" disabled selected style="display:none;">Posti Auto Esterni</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+        </select>
+      </div>
+      <div>
+        <h3 class="shorter2">Riscaldamento</h3>
+        <div>
+          <label>
+            <input type="radio" value="autonomous" [(ngModel)]="charFormData.warming" name="warming" class="radio">
+            <span class="radio-custom"></span>
+            Autonomo
+          </label>
+        </div>
+        <div>
+          <label>
+            <input type="radio" value="centralized" [(ngModel)]="charFormData.warming" name="warming" class="radio">
+            <span class="radio-custom"></span>
+            Centralizzato
+          </label>
+        </div>
+        <div>
+          <label>
+            <input type="radio" value="absent" [(ngModel)]="charFormData.warming" name="warming" class="radio">
+            <span class="radio-custom"></span>
+            Assente
+          </label>
+        </div>
+      </div>
+      <div>
+        <h3>Classe energetica (obbligatorio)</h3>
+        <select id="energy" name="energyClass" [(ngModel)]="charFormData.energyClass" class="required" (change)="upgradeCharBar()">
+          <option value="" disabled selected style="display:none;">Seleziona un'opzione</option>
+          <optgroup label="A">
+            <option value="A1">A1</option>
+            <option value="A2">A2</option>
+            <option value="A3">A3</option>
+            <option value="A4">A4</option>
+          </optgroup>
+          <option value="B">B</option>
+          <option value="C">C</option>
+          <option value="D">D</option>
+          <option value="E">E</option>
+          <option value="F">F</option>
+          <option value="G">G</option>
+        </select>
+        <p class="warning">Campo obbligatorio</p>
+      </div>
+      <div>
+        <h3>Stato dell'immobile (obbligatorio)</h3>
+        <select id="state" name="propertyState" [(ngModel)]="charFormData.propertyState" class="required" (change)="upgradeCharBar()">
+          <option value="" disabled selected style="display:none;">Seleziona un'opzione</option>
+          <option value="Nuovo">Nuovo</option>
+          <option value="Ottimo e Ristrutturato">Ottimo e Ristrutturato</option>
+          <option value="Buono e abitabile">Buono e abitabile</option>
+          <option value="Da ristrutturare">Da ristrutturare</option>
+        </select>
+        <p class="warning">Campo obbligatorio</p>
+      </div>
+      <div>
+        <h3>Altre Caratteristiche</h3>
+        <div class="horizzontal" id="poolDiv">
+          <input type="checkbox" name="pool" [(ngModel)]="charFormData.pool" class="checkboxes">
+          <p>Piscina</p>
+        </div>
+        <p>Superficie</p>
+        <input type="text" name="poolSurface" [(ngModel)]="charFormData.poolSurface" placeholder="Inserisci superficie piscina...">
+        <div class="horizzontal" id="gardenDiv">
+          <input type="checkbox" name="garden" [(ngModel)]="charFormData.garden" class="checkboxes">
+          <p>Giardino</p>
+        </div>
+        <p>Superficie:</p>
+        <input type="text" name="gardenSurface" [(ngModel)]="charFormData.gardenSurface" placeholder="Inserisci superficie giardino...">
+      </div>
+        <div>
+        <h3 class="shorter2">Arredamento</h3>
+        <div>
+          <label>
+            <input type="radio" value="false" [(ngModel)]="charFormData.furnishedStatus" name="furnished" class="radio">
+            <span class="radio-custom"></span>
+            Non Arredato
+          </label>
+        </div>
+        <div>
+          <label>
+            <input type="radio" value="true" [(ngModel)]="charFormData.furnishedStatus" name="furnished" class="radio">
+            <span class="radio-custom"></span>
+            Arredato
+          </label>
+        </div>
+      </div>
+      <nav>
+        <button type="button" id="verify_button" class="cliccable"
+                (click)="checkRequired('/Pubblica_Annuncio/Ville/Prezzo e Descrizione')">
+          Prosegui
+        </button>
+      </nav>
+    </div>
+  </form>
+</div>
+</body>
+</html>
+

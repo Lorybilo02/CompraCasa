@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Crea_Annuncio</title>
+</head>
+<body>
+<header>
+  <nav>
+    <div class="buttons">
+      <div>
+        <h1 class="home_label" (click)="redirectTo('')" >Compracasa.it</h1>
+      </div>
+      <div>
+          <button type="button" (click)="redirectTo('TermsandCondition')">Segnala Problema</button>
+
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="container">
+  <div class="left_container">
+    <div class="subleft_container" id="char_container">
+      <p id="percentLabel">25% Completato</p>
+      <h2>Nuovo Annuncio</h2>
+    </div>
+    <nav>
+      <div class="subleft_container" (click)="redirectTo('/Pubblica_Annuncio/Tipologia e Località')">
+        <p class="left_labels">Tipologia e Località</p>
+        <progress value="100" max="100" class="bars"></progress>
+      </div>
+      <div class="subleft_container" id="actualDiv">
+        <p class="left_labels">Caratteristiche</p>
+        <progress value="0" max="100" class="bars" id="charactheristics_bar"></progress>
+      </div>
+      <div class="subleft_container" (click)="checkRequired('/Pubblica_Annuncio/Garages/Prezzo e Descrizione')">
+        <p class="left_labels">Prezzi e Descrizione</p>
+        <progress value="0" max="100" class="bars"></progress>
+      </div>
+      <div class="subleft_container" (click)="checkRequired('/Pubblica_Annuncio/Contatti')">
+        <p class="left_labels">Contatti</p>
+        <progress value="0" max="100" class="bars"></progress>
+      </div>
+      <button type="button" id="announcment_button" class="cliccable" (click)="redirectTo('MyAnnouncements')">I Tuoi Annunci</button>
+    </nav>
+  </div>
+  <form>
+    <div class="fields">
+      <div>
+        <h2>Nuovo Annuncio</h2>
+        <h3>Caratteristiche:</h3>
+        <h3>Superficie (obbligatorio)</h3>
+        <input type="text" placeholder="Superficie in metri quadrati..." id="surface" name="surface" [(ngModel)]="charFormData.surface" class="required" (change)="upgradeCharBar()">
+        <p class="warning">Campo obbligatorio</p>
+      </div>
+      <div>
+        <h3>Piano (obbligatorio)</h3>
+        <select id="floors" class="required" name="floor" [(ngModel)]="charFormData.floor" (change)="upgradeCharBar()">
+          <option value="" disabled selected style="display:none;">Seleziona Piano</option>
+          <option value="-1">-1</option>
+          <option value="-2">-2</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+        </select>
+        <p class="warning">Campo obbligatorio</p>
+      </div>
+      <div>
+        <h3 id="shorter">Tipo di Garage/Box</h3>
+        <div>
+          <label>
+            <input type="radio" name="garageType" value="indipendent" [(ngModel)]="charFormData.garageType" class="radio">
+            <span class="radio-custom"></span>
+            Box Indipendente
+          </label>
+        </div>
+        <div>
+          <label>
+            <input type="radio" name="garageType" value="shared" [(ngModel)]="charFormData.garageType"  class="radio">
+            <span class="radio-custom"></span>
+            Box Garage in Comune
+          </label>
+        </div>
+      </div>
+      <div class="vertical">
+        <h3>Larghezza porta</h3>
+        <input type="text" name="doorWidth" [(ngModel)]="charFormData.doorWidth" placeholder="Larghezza in Metri...">
+      </div>
+      <div>
+        <h3>Stazioni di Ricarica Elettrica</h3>
+        <select id="chargeStations" name="electricCharge" [(ngModel)]="charFormData.electricCharge" >
+          <option value="" disabled selected style="display:none;">Seleziona un'opzione</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </div>
+
+      <div>
+        <h3>Altre Caratteristiche</h3>
+        <div class="horizzontal">
+          <input type="checkbox" name="accessibility" [(ngModel)]="charFormData.h24Accessibility" class="checkboxes">
+          <p>Accessibilità h24</p>
+        </div>
+        <div class="horizzontal">
+          <input type="checkbox" name="disableAccess" [(ngModel)]="charFormData.disableAcess" class="checkboxes">
+          <p>Accesso per disabili</p>
+        </div>
+        <div class="horizzontal">
+          <input type="checkbox" name="guards" [(ngModel)]="charFormData.guards" class="checkboxes">
+          <p>Vigilanza</p>
+        </div>
+        <div class="horizzontal" id="last">
+          <input type="checkbox" name="alarm" [(ngModel)]="charFormData.alarm" class="checkboxes">
+          <p>Impianto di Allarme</p>
+        </div>
+      </div>
+      <div>
+        <h3>Stato dell'immobile (obbligatorio)</h3>
+        <select id="state" class="required" name="propertyState" [(ngModel)]="charFormData.propertyState" (change)="upgradeCharBar()">
+          <option value="" disabled selected style="display:none;">Seleziona un'opzione</option>
+          <option value="Nuovo">Nuovo</option>
+          <option value="Ottimo e Ristrutturato">Ottimo e Ristrutturato</option>
+          <option value="Buono e abitabile">Buono e abitabile</option>
+          <option value="Da ristrutturare">Da ristrutturare</option>
+        </select>
+        <p class="warning">Campo obbligatorio</p>
+      </div>
+      <nav>
+        <button type="button" id="verify_button" class="cliccable"
+                (click)="checkRequired('/Pubblica_Annuncio/Garages/Prezzo e Descrizione')">
+          Prosegui
+        </button>
+      </nav>
+    </div>
+  </form>
+</div>
+</body>
+</html>

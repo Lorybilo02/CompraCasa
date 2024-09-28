@@ -1,0 +1,95 @@
+body {
+  align-items: center;
+  margin: 0; /* Aggiunto per evitare spazi inutili */
+}
+
+html {
+  height: 100%;
+}
+
+h1,
+h2 {
+  color: white;
+  font-family: "Montserrat", sans-serif;
+}
+
+header {
+  text-align: left;
+  background-color: steelblue;
+  height: 400px;
+}
+
+.labels {
+  text-align: center;
+}
+
+button {
+  background-color: steelblue;
+  border-color: steelblue;
+  border-width: 0;
+  border-radius: 5px;
+  color: white;
+  width: 150px;
+  height: 60px;
+  font-family: "Arial Black", sans-serif;
+}
+
+.home_label:hover,
+#publishes_button:hover {
+  cursor: pointer;
+}
+
+.buttons button:hover {
+  cursor: pointer;
+  border-bottom-color: white;
+  border-bottom-width: 5px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.publishes_box {
+  width: 100%;
+  max-width: 550px;
+  height: auto;
+  background-color: whitesmoke;
+  padding: 20px;
+  border: 2px solid;
+  margin: 0 auto;
+  margin-top: -100px;
+  text-align: center;
+}
+
+#how_it_works_label {
+  color: black;
+}
+
+#publishes_button {
+  background-color: #c12400;
+  color: white;
+  width: 100%;
+  max-width: 250px;
+  font-family: "Arial", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 10px;
+}
+#publishes_button:hover{
+  background-color: darkred;
+}
+/* Media query per schermi con larghezza massima di 768px */
+@media (max-width: 768px) {
+  header {
+    height: 400px;
+  }
+
+  .publishes_box {
+    width: 80%;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -50px;
+  }
+}

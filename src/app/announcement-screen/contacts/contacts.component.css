@@ -1,0 +1,155 @@
+header{
+  background-color: steelblue;
+}
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.home_label:hover{
+  cursor: pointer;
+}
+.home_label{
+  color: white;
+}
+
+button {
+  background-color: steelblue;
+  border-color: steelblue;
+  border-width: 0;
+  border-radius: 5px;
+  color: white;
+  width: fit-content;
+  height: 80px;
+  font-family: "Arial Black", sans-serif;
+  padding: 20px;
+}
+
+.buttons button:hover {
+  cursor: pointer;
+  border-bottom-color: white;
+  border-bottom-width: 5px;
+}
+
+#left_container{
+  width: 300px;
+}
+#first_container{
+  background-color: whitesmoke;
+}
+.subleft_container:hover{
+  background-color: whitesmoke;
+  cursor: pointer;
+}
+.subleft_container{
+  text-align: center;
+  border: 1px solid lightgray;
+}
+.bars{
+  margin-bottom: 10px;
+  height: 15px;
+}
+
+#announcment_button{
+  height: 40px;
+  width: 81%;
+  margin-left:10%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+#announcment_button:hover{
+  background-color: #0056b3;
+}
+.container{
+  display: flex;
+  margin-left: 90px;
+}
+.fields{
+  margin-left: 50px;
+  flex-grow: 1;
+}
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 100%;
+  max-width: 50%;
+}
+.warning{
+  font-size: 15px;
+  color: #c11e3d;
+}
+#verify_button{
+  width: 40%;
+  height: 50px;
+  padding: 0;
+  background-color: #c12400;
+  margin-top: 20px;
+}
+#verify_button:hover{
+  background-color: darkred;
+}
+.cliccable:hover{
+  cursor: pointer;
+}
+#actualDiv{
+  background-color: lightsteelblue;
+}
+
+form{
+  width: 1100px;
+}
+
+@media (max-width: 1200px) {
+  form{
+    width: 100%;
+  }
+  .container{
+    margin-left: 50px;
+  }
+}
+
+/* Styles for 992px and below */
+@media (max-width: 992px) {
+  .container{
+    margin-left: 20px;
+  }
+
+}
+
+/* Styles for 768px and below */
+@media (max-width: 768px) {
+  #left_container{
+    width: 100%;
+  }
+  .container{
+    margin-left: 0;
+  }
+}
+
+/* Styles for 480px and below */
+@media (max-width: 480px) {
+  header {
+    text-align: center;
+  }
+  #announcment_button {
+    width: 90%;
+    margin-left: 5%;
+  }
+  .container {
+    margin-left: 0;
+    flex-direction: column;
+    align-items: center;
+  }
+  .fields {
+    margin-left: 0;
+    margin-top: 20px;
+    width: 90%;
+  }
+
+  #verify_button {
+    width: 90%;
+  }
+}

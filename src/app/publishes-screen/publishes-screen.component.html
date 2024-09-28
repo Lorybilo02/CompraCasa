@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+  <title>Pubblica</title>
+  <meta charset="utf-8">
+</head>
+<body>
+<header>
+  <nav>
+  <div class="buttons">
+  <div>
+    <h1 class="home_label" (click)="redirectTo('')">Compracasa.it</h1>
+  </div>
+    <div>
+        <button type="button" (click)="redirectTo('TermsandCondition')">Segnala Problema</button>
+        <button type="button" (click)="redirectTo('Valuta')">Valuta Casa</button>
+
+    </div>
+  </div>
+  </nav>
+  <div class="labels">
+    <h1>Pubblica il tuo annuncio in modo semplice</h1>
+    <h2>Ottieni la migliore visibilità per il tuo annuncio di vendita o affitto</h2>
+  </div>
+</header>
+<nav>
+  <div class="publishes_box">
+    <h2 id="how_it_works_label">Come funziona:</h2>
+    <h3>Inserisci i dati dell'immobile</h3>
+    <p>Scegli tipo di contratto, tipologia, caratteristiche, indirizzo, una descrizione e foto del tuo immobile.</p>
+    <h3>Pubblica il tuo annuncio</h3>
+    <p>Il tuo annuncio sarà visibile su Compracasa.it </p>
+    <h3>Perchè pubblicare un annuncio:</h3>
+    <p>Il tuo annuncio sarà visibile a una vasta gamma di utenti interessati ad acquistare/affittare un immobile. Ti contatteranno solo utenti verificati e puoi attivare/disattivare il tuo annuncio quando vuoi</p>
+    <button type="button" id="publishes_button" (click)="redirectTo('/Pubblica_Annuncio/Tipologia e Località')">CREA ANNUNCIO</button>
+  </div>
+</nav>
+</body>
+</html>

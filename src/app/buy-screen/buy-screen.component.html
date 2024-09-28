@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acquista Immobile</title>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h2>Acquista Immobile</h2>
+    </div>
+    <div class="user-info">
+        <p><strong>Username:</strong> <span id="username">{{username}}</span></p>
+        <p><strong>ID Casa:</strong> <span id="idCasa">{{id}}</span></p>
+    </div>
+    <div class="house-info">
+        <p><strong>Tipo di Immobile:</strong> <span id="tipo">{{type}}</span></p>
+        <p><strong>Descrizione Immobile:</strong></p>
+        <p id="descrizione">{{description}}</p>
+        <p><strong>Valutazione Immobile:</strong> <span id="valutazione">{{starRating}}/5</span></p>
+        <p><strong>Prezzo:</strong> <span id="prezzo">€ {{price}}</span></p>
+        <p><strong>Superficie:</strong> <span id="superficie">{{sqm}} m²</span></p>
+    </div>
+    <div class="user-info">
+        <p><strong>Numero di telefono del venditore:</strong> <span id="phoneNumber">{{phoneNumber}}</span></p>
+        <p><strong>Email del venditore:</strong> <span id="email">{{email}}</span></p>
+    </div>
+    <button class="buy-button" (click)="buy()">Compra</button>
+</div>
+</body>
+</html>

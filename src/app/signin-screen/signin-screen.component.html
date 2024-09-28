@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrazione - Compracasa.it</title>
+</head>
+
+<body>
+<header>
+    <nav>
+        <h1 id="home_label" (click)="redirectTo('')">Compracasa.it</h1>
+    </nav>
+</header>
+<div class="form-container">
+    <div class="form-signin">
+        <h2>Registrazione</h2>
+        <form (submit)="handleRegistration($event)">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="text" name="name" placeholder="Nome" required>
+            <input type="text" name="surname" placeholder="Cognome" required>
+            <div class="password-container">
+                <input type="password" name="password" id="password" placeholder="Password" required>
+                <span class="toggle-password" (click)="togglePasswordVisibility()">👁️ Mostra</span>
+            </div>
+            <input type="submit" value="Registrati">
+            <p>Hai già un profilo? <span class="labels login-link" (click)="redirectTo('Login')">Effettua il login</span></p>
+        </form>
+    </div>
+</div>
+<footer>
+    <div class="label-container">
+        <h3>REGISTRATI O ACCEDI PER:</h3>
+        <div class="labels-wrapper">
+            <div class="label">
+                <span class="label-title">SALVARE I TUOI ANNUNCI</span>
+                <span class="label-description">Puoi salvare i tuoi annunci e averli sempre a portata di mano</span>
+            </div>
+            <div class="label">
+                <span class="label-title">RICERCARE SU MAPPA</span>
+                <span class="label-description">Cerca la tua casa dei sogni ovunque tu voglia</span>
+            </div>
+            <div class="label">
+                <span class="label-title">PUBBLICARE I TUOI ANNUNCI</span>
+                <span class="label-description">Pubblica direttamente il tuo annuncio per vendere o affittare il tuo immobile</span>
+            </div>
+            <div class="label">
+                <span class="label-title">SALVARE LA TUA CASA</span>
+                <span class="label-description">Monitora il valore della tua casa con dati sempre aggiornati</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="div-footer-container">
+            <button (click)="redirectTo('TermsandCondition')">Termini e condizioni</button>
+            <button (click)="redirectTo('TermsandCondition')">Chi siamo?</button>
+            <button (click)="redirectTo('TermsandCondition')">Segnala un problema</button>
+        </div>
+    </div>
+</footer>
+</body>
+
+</html>

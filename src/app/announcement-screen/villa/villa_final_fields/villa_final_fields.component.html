@@ -1,0 +1,95 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Crea_Annuncio</title>
+</head>
+<body>
+<header>
+  <nav>
+    <div class="buttons">
+      <div>
+        <h1 class="home_label" (click)="redirectTo('')" >Compracasa.it</h1>
+      </div>
+      <div>
+          <button type="button" (click)="redirectTo('TermsandCondition')">Segnala Problema</button>
+
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="container">
+  <div class="left_container">
+    <div class="subleft_container" id="first_container">
+      <p id="percentLabel">50% Completato</p>
+      <h2>Nuovo Annuncio</h2>
+    </div>
+    <nav>
+      <div class="subleft_container" (click)="redirectTo('/Pubblica_Annuncio/Tipologia e Località')">
+        <p class="left_labels">Tipologia e Località</p>
+        <progress value="100" max="100" class="bars"></progress>
+      </div>
+      <div class="subleft_container"  (click)="redirectTo('/Pubblica_Annuncio/'+ selectValue+ '/Caratteristiche')">
+        <p class="left_labels">Caratteristiche</p>
+        <progress value="100" max="100" class="bars" id="charactheristics_bar"></progress>
+      </div>
+      <div class="subleft_container" id="actualDiv">
+        <p class="left_labels">Prezzi e Descrizione</p>
+        <progress value="0" max="100" class="bars" id="priceBar"></progress>
+      </div>
+      <div class="subleft_container" (click)="checkRequired('/Pubblica_Annuncio/Contatti')">
+        <p class="left_labels">Contatti</p>
+        <progress value="0" max="100" class="bars"></progress>
+      </div>
+      <button type="button" id="announcment_button" class="cliccable" (click)="redirectTo('MyAnnouncements')">I Tuoi Annunci</button>
+    </nav>
+  </div>
+  <form>
+    <div class="fields">
+      <h2>Nuovo Annuncio</h2>
+      <div>
+        <h2>Prezzo e costi</h2>
+        <h3>Prezzo (obbligatorio)</h3>
+        <input type="text" placeholder="Inserisci il prezzo di affitto(mensile) o vendita..." name="price" [(ngModel)]="descriptionFormData.price" id="price" class="required" (change)="upgradePriceBar()">
+        <p class="warning">Campo obbligatorio</p>
+      </div>
+      <div>
+        <h3 id="shorter2">Descrizione (obbligatorio)</h3>
+        <p>Inserisci una descrizione di almeno 16 caratteri</p>
+        <textarea placeholder="Inserisci qui la descrizione..." class="required" id="description" name="description" [(ngModel)]="descriptionFormData.description" (change)="upgradePriceBar()"></textarea>
+        <p class="warning">Campo obbligatorio</p>
+      </div>
+        <div>
+            <h3>Foto (obbligatorio)</h3>
+            <div id="image_box" (click)="loadPhoto()">
+                <div class="foto-container">
+                    <p *ngIf="!loadedPhotos.length">+</p>
+                    <div *ngFor="let foto of loadedPhotos" class="foto">
+                        <img [src]="foto.url" alt="Foto">
+                    </div>
+                </div>
+                <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;"  accept="image/png, image/jpeg" multiple />
+            </div>
+
+            <div id="removePhotoDiv">
+                <p class="warning">Campo obbligatorio</p>
+                <p id="removePhoto" (click)="removePhoto()">Rimuovi ultima foto</p>
+            </div>
+            <div>
+                <h3>Seleziona la posizione sulla mappa</h3>
+                <app-map-selector (selectedPositionChange)="onLocationSelected($event)"></app-map-selector>
+            </div>
+        </div>
+      <nav>
+        <button type="button" id="verify_button" class="cliccable"
+                (click)="checkRequired('/Pubblica_Annuncio/Contatti')">
+          Prosegui
+        </button>
+      </nav>
+    </div>
+  </form>
+</div>
+
+</body>
+</html>

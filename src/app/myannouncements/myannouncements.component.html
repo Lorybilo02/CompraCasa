@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gestione Annunci</title>
+</head>
+<body>
+<div class="table-container">
+    <h1>I MIEI ANNUNCI</h1>
+    <table>
+        <thead>
+        <tr>
+
+
+            <th>Vendita</th>
+            <th>Indirizzo</th>
+            <th>N.Civico</th>
+
+            <th>Posizione</th>
+            <th>Condizione</th>
+            <th>Classe Energetica</th>
+            <th>Riscaldamento</th>
+            <th>Piano</th>
+            <th>Tipo</th>
+            <th>Metri Quadri</th>
+            <th>Prezzo</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let property of properties">
+
+
+
+            <td>{{ property.sellMode }}</td>
+            <td>{{ property.address }}</td>
+            <td>{{ property.civicNumber }}</td>
+
+            <td>{{ property.location }}</td>
+            <td>{{ property.condition }}</td>
+            <td>{{ property.energeticClass }}</td>
+            <td>{{ property.heatingSystem }}</td>
+            <td>{{ property.floor }}</td>
+            <td>{{ property.type }}</td>
+            <td>{{ property.sqm }}</td>
+            <td>{{ property.price | currency:'EUR' }}</td>
+            <td>
+                <button class="delete-button" (click)="deleteProperty(property)">Elimina</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>

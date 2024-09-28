@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top-bar</title>
+</head>
+<body>
+<header>
+    <h1>CompraCasa.it</h1>
+    <h2>E' il momento di fare la tua valutazione!</h2>
+    <h2>Scegli l'immobile che desideri valutare e fai la tua recensione!</h2>
+</header>
+<div class="blue-background">
+    <div class="search-bar">
+        <div class="vertical">
+            <label>Tipologia</label>
+            <select name="category" (change)="onSelectChange($event)">
+                <option value="" disabled selected style="display:none;">Scegli Tipologia di Immobile</option>
+                <option value="appartaments">Appartamenti</option>
+                <option value="villas">Ville</option>
+                <option value="buildings">Palazzi</option>
+                <option value="offices">Uffici</option>
+                <option value="shops">Negozi</option>
+                <option value="depots">Depositi</option>
+                <option value="garages">Garage</option>
+            </select>
+        </div>
+        <div class="vertical">
+            <label>Città</label>
+            <input type="text" id="placebar" [(ngModel)]="town" placeholder="Inserisci comune o città in cui cercare...">
+        </div>
+        <div class="vertical">
+            <label>Prezzo Min</label>
+            <input type="text" id="priceFieldMin" class="little-field" [(ngModel)]="priceMin" placeholder="Prezzo Minimo:" >
+        </div>
+        <div class="vertical">
+            <label>Prezzo Max</label>
+            <input type="text" id="priceFieldMax" class="little-field" [(ngModel)]="priceMax" placeholder="Prezzo Massimo:">
+        </div>
+        <div class="vertical">
+            <label>Sqm Min</label>
+            <input type="text" id="surfaceFieldMin" class="little-field" [(ngModel)]="sqmMin" placeholder="Superficie Minima:" >
+        </div>
+        <div class="vertical">
+            <label>Sqm Max</label>
+            <input type="text" id="surfaceFieldMax" class="little-field" [(ngModel)]="sqmMax" placeholder="Superficie Massima:">
+        </div>
+        <button type="submit" id="search_button" (click)="searchProperties(town, priceMin, priceMax, sqmMin, sqmMax)" >CERCA</button>
+    </div>
+</div>
+<div class="card-container">
+    <div class="card" tabindex="0"*ngFor="let property of properties; let i = index" (click)="selectProperty(property)" [ngClass]="{'selected': isSelected(property)}">
+        <img *ngIf="imageUrls[i]" [src]="imageUrls[i]" alt="Property">
+        <h3>{{ property.type}}</h3>
+        <p>{{ property.price }} € </p>
+        <p>{{ property.sqm }} m²</p>
+        <p>{{ property.location }}</p>
+    </div>
+</div>
+<div class="white-area">
+    <textarea id="description" placeholder="Inserisci una descrizione..."></textarea>
+    <div class="rating">
+        <input type="radio" id="star1" name="rating" value="5" (click)="starValue = 5">
+        <label for="star1">★</label>
+
+        <input type="radio" id="star2" name="rating" value="4" (click)="starValue = 4">
+        <label for="star2">★</label>
+
+        <input type="radio" id="star3" name="rating" value="3" (click)="starValue = 3">
+        <label for="star3">★</label>
+
+        <input type="radio" id="star4" name="rating" value="2" (click)="starValue = 2">
+        <label for="star4">★</label>
+
+        <input type="radio" id="star5" name="rating" value="1" (click)="starValue = 1">
+        <label for="star5">★</label>
+    </div>
+    <button type="button" id="submit_button" (click)="sendFeedback()">Invia</button>
+</div>
+</body>
+</html>
+

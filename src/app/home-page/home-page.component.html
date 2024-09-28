@@ -1,0 +1,93 @@
+
+<html>
+<head>
+  <title>Top-bar</title>
+  <meta charset="UTF-8">
+    <style>
+        /* Aggiungi qualche stile per i bottoni disabilitati */
+        .disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+  <header>
+    <img src="../../assets/lente-casa.jpg">
+    <h1>CompraCasa.it</h1>
+    <h2 *ngIf="!isAuthenticated"> Qui puoi acquistare, vendere e recensire immobili!</h2>
+    <h2 *ngIf="!isAuthenticated">Buona navigazione!</h2>
+    <h2 *ngIf="isAuthenticated">BENTORNATO    {{username}}!</h2>
+    <nav>
+      <div>
+        <div class="buttons_left">
+          <button type="button" id="buy_button" autofocus>COMPRA</button>
+          <button type="button" id="sell_button" [class.disabled]="!isAuthenticated" (click)="isAuthenticated ? redirectTo('MyAnnouncements') : showAlert()" >I MIEI ANNUNCI</button>
+          <button type="button" id="value_button" [class.disabled]="!isAuthenticated" (click)="isAuthenticated ? redirectTo('Valuta') : showAlert()" >VALUTA</button>
+        <!--  <button type="button" id="auctions_button">ASTE</button>  -->
+            <!-- Mostra il pulsante "Gestisci" solo se l'utente è un amministratore -->
+            <button *ngIf="isAdmin" (click)="redirectTo('Admin')">GESTISCI</button>
+        </div>
+        <div class="buttons_right">
+          <button type="button" id="public_button" [class.disabled]="!isAuthenticated" (click)="isAuthenticated ? redirectTo('Pubblica') : showAlert()">PUBBLICA</button>
+            <button *ngIf="!isAuthenticated" type="button" id="logIn_button" (click)="redirectTo('Login')">ACCEDI</button>
+            <button *ngIf="isAuthenticated" type="button" id="logOut_button" (click)="logout()">LOGOUT</button>
+        </div>
+      </div>
+      <div class="search-bar">
+        <select name="category" (change)="onSelectChange($event)">
+          <option value="" disabled selected style="display:none;">Seleziona un'opzione</option>
+          <option value="appartaments">Appartamenti</option>
+
+          <option value="villas">Ville</option>
+          <option value="buildings">Palazzi</option>
+          <option value="offices">Uffici</option>
+          <option value="shops">Negozi</option>
+          <option value="depots">Depositi</option>
+          <option value="garages">Garage</option>
+        </select>
+        <input type="text" id="placebar" [(ngModel)]="town" placeholder="Inserisci comune o città in cui cercare...">
+        <button type="submit" id="search_button" (click)="searchProperties( town, priceMin, priceMax, sqmMin, sqmMax)">CERCA</button>
+      </div>
+
+      <div class="horizzontal">
+        <div id="priceDiv" (click)="togglePriceList()" tabindex="0">
+          <p id="priceLabel">Prezzi</p>
+          <img src="./assets/myArrow.png" id="priceDownArrow">
+        </div>
+        <div id="surfaceDiv" (click)="toggleSurfaceList()" tabindex="0">
+          <p id="surfaceLabel">Superficie</p>
+          <img src="./assets/myArrow.png" id="surfaceDownArrow">
+        </div>
+      </div>
+      <div id="priceOptions" [style.display]="priceListVisible ? 'block' : 'none'">
+        <input type="text" id="priceFieldMin" [(ngModel)]="priceMin" placeholder="Prezzo Minimo:" (keydown.enter)="handlePriceLiClick($event)">
+          <input type="text" id="priceFieldMax" [(ngModel)]="priceMax" placeholder="Prezzo Massimo:" (keydown.enter)="handlePriceLiClick($event)">
+      </div>
+      <div id="surfaceOptions" [style.display]="surfaceListVIsible ? 'block' : 'none'">
+        <input type="text" id="surfaceFieldMin" [(ngModel)]="sqmMin" placeholder="Superficie Minima:" (keydown.enter)="handleSurfaceLiClick($event)">
+          <input type="text" id="surfaceFieldMax" [(ngModel)]="sqmMax" placeholder="Superficie Massima:" (keydown.enter)="handleSurfaceLiClick($event)">
+      </div>
+      </nav>
+  </header>
+  <div class="card-container">
+      <div class="card" *ngFor="let property of properties; let i = index">
+          <img *ngIf="imageUrls[i]" [src]="imageUrls[i]" alt="Property">
+          <h3>{{ property.type }}</h3>
+          <p>{{ property.price }} €</p>
+          <p>{{ property.sqm }} m²</p>
+          <p>{{ property.location }}</p>
+          <p>{{ property.description }}</p>
+          <p>Rating: {{ property.starRating }}/5</p>
+          <p>Latitudine: {{ property.latitude }}</p>
+          <p>Longitudine: {{ property.longitude }}</p>
+          <button (click)="isAuthenticated ? redirectTo('BuyProperty', property) : showAlert()">Compra</button>
+      </div>
+  </div>
+
+  <app-map-selector-home (selectedPositionChange)="onLocationSelected($event)"></app-map-selector-home>
+
+
+</body>
+</html>
+

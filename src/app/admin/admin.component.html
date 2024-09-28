@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gestione Utenti</title>
+</head>
+<body>
+<div class="container">
+    <h1>Gestione Utenti</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>Nome</th>
+            <th>Cognome</th>
+            <th>Admin</th>
+            <th>Azioni</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of users">
+            <td>{{ user.username }}</td>
+            <td>{{ user.firstname }}</td>
+            <td>{{ user.secondname }}</td>
+            <td>{{ user.isadmin ? 'Sì' : 'No' }}</td>
+            <td>
+                <button (click)="deleteUser(user.username)" class="btn btn-danger">Elimina</button>
+                <button *ngIf="!user.isadmin" (click)="promoteToAdmin(user.username)" class="btn btn-primary">Promuovi a Admin</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>

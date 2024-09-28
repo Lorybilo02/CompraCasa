@@ -1,0 +1,83 @@
+<!--Da fare: Responsive + verifica/convalida di email e numero di telefono + Schermata "I tuoi Annunci" +
+ mantenere colorata la div "Contatti" + togliere scritte rosse se i campi sono completati + avanzamento bar-->
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Crea_Annuncio</title>
+</head>
+<body>
+<header>
+  <nav>
+    <div class="buttons">
+      <div>
+        <h1 class="home_label" (click)="redirectTo('')" >Compracasa.it</h1>
+      </div>
+      <div>
+          <button type="button" (click)="redirectTo('TermsandCondition')">Segnala Problema</button>
+
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="container">
+  <div id="left_container">
+    <div class="subleft_container" id="first_container">
+      <p id="percentLabel">75% Completato</p>
+      <h2>Nuovo Annuncio</h2>
+    </div>
+    <nav>
+      <div class="subleft_container" (click)="redirectTo('/Pubblica_Annuncio/Tipologia e Località')">
+        <p class="left_labels">Tipologia e Località</p>
+        <progress value="100" max="100" class="bars"></progress>
+      </div>
+      <div class="subleft_container" (click)="redirectTo('/Pubblica_Annuncio/' +  selectValue + '/Caratteristiche')">
+        <p class="left_labels">Caratteristiche</p>
+        <progress value="100" max="100" class="bars" id="charactheristics_bar"></progress>
+      </div>
+      <!--Ricorda di reindirizzare in base al tipo di immobile selezionato-->
+      <div class="subleft_container" (click)="redirectTo('/Pubblica_Annuncio/' + selectValue + '/Prezzo e Descrizione')">
+        <p class="left_labels">Prezzi e Descrizione</p>
+        <progress value="100" max="100" class="bars"></progress>
+      </div>
+      <div class="subleft_container" id="actualDiv">
+        <p class="left_labels">Contatti</p>
+        <progress value="0" max="100" class="bars" id="contactsBar"></progress>
+      </div>
+      <button type="button" id="announcment_button" class="cliccable" (click)="redirectTo('MyAnnouncements')">I Tuoi Annunci</button>
+    </nav>
+  </div>
+  <form>
+    <div class="fields">
+      <h2>Nuovo Annuncio</h2>
+      <div>
+        <h2>Contatti</h2>
+          <h3>Numero di Telefono (obbligatorio)</h3>
+          <input type="text" placeholder="Inserisci il tuo numero di telefono" class="required" name="phoneNumber" [(ngModel)]="phoneNumber" (change)="upgradeContactsBar()" id="phoneNumber">
+          <p class="warning">Campo obbligatorio</p>
+      </div>
+        <div>
+            <h3>Email (obbligatorio)</h3>
+            <input type="text" placeholder="Inserisci la tua email" class="required" name="email" [(ngModel)]="email" (change)="upgradeContactsBar()" id="email">
+            <p class="warning">Campo obbligatorio</p>
+        </div>
+        <!--
+      <div>
+        <h3>Password (obbligatorio)</h3>
+        <input type="text" placeholder="Inserisci la tua password" class="required" (change)="upgradeContactsBar()" id="password">
+        <p class="warning">Campo obbligatorio</p>
+      </div>
+ -->
+      <nav>
+        <button type="button" id="verify_button" class="cliccable"
+                (click)="validateEmail()">
+          Prosegui
+        </button>
+      </nav>
+    </div>
+  </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Crea_Annuncio</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="buttons">
+          <div>
+            <h1 class="home_label" (click)="redirectTo('')">Compracasa.it</h1>
+          </div>
+          <div>
+              <button type="button" (click)="redirectTo('TermsandCondition')">Segnala Problema</button>
+
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div class="container">
+      <div class="left_container">
+        <div class="subleft_container" id="first_container">
+          <p id="percentLabel">0% Completato</p>
+          <h2>Nuovo Annuncio</h2>
+        </div>
+        <div class="subleft_container" id="actualDiv">
+          <p class="left_labels">Tipologia e Località</p>
+          <progress value="0" max="100" id="typeBar" class="bars"></progress>
+        </div>
+        <button type="button" id="announcment_button" class="cliccable" (click)="redirectTo('MyAnnouncements')">I Tuoi Annunci</button>
+      </div>
+      <div class="fields">
+        <h2>Nuovo Annuncio</h2>
+        <div>
+          <h3>Seleziona la categoria del tuo annuncio:</h3>
+          <select name="type" id="propertyType" [(ngModel)]="typeFormData.propertyType" (change)="onSelectChange($event)" class="required">
+            <option value="" disabled selected style="display:none;">Seleziona un'opzione</option>
+            <option value="Appartaments">Appartamenti</option>
+            <option value="Villas">Ville</option>
+            <option value="Buildings">Palazzi</option>
+            <option value="Offices">Uffici</option>
+            <option value="Shops">Negozi</option>
+            <option value="Depots">Depositi</option>
+            <option value="Garages">Garage</option>
+          </select>
+          <p class="warning">Campo obbligatorio</p>
+        </div>
+        <div>
+          <div>
+            <label>
+            <input type="radio" name="sellMode" [(ngModel)]="typeFormData.sellMode" value="sell" class="radio">
+            <span class="radio-custom"></span>
+            Vendita
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="radio" name="sellMode" [(ngModel)]="typeFormData.sellMode" value="rent" class="radio">
+              <span class="radio-custom"></span>
+              Affitto
+            </label>
+          </div>
+        </div>
+        <div>
+          <h3>Località (obbligatorio)</h3>
+          <p>Inserisci il comune</p>
+          <input type="text" name="town" [(ngModel)]="typeFormData.town" placeholder="Inserisci il comune..." (click)="upgradeBar()" id="town" class="required">
+          <p class="warning">Campo obbligatorio</p>
+          <p>Inserisci indirizzo e numero civico</p>
+          <input type="text" placeholder="Indirizzo..." name="address" [(ngModel)]="typeFormData.address" (click)="upgradeBar()" id="address" class="required">
+          <input type="text" placeholder="n°..." name="civicNumber" [(ngModel)]="typeFormData.civicNumber" (click)="upgradeBar()" id="civic_number" class="required">
+          <p class="warning">Campo obbligatorio</p>
+        </div>
+        <button type="button" id="verify_button" class="cliccable"
+                (click)="checkRequired('/Pubblica_Annuncio/' + selectedValue + '/Caratteristiche')">
+                Prosegui
+        </button>
+      </div>
+    </div>
+
+
+  </body>
+</html>

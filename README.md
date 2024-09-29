@@ -3,9 +3,9 @@
 An italian real estate website. 
 
 ### Credits:
-- JoCon03 --> Angular Components (announcement-screen, buy-screen, feedback, home-page, map-selector, publishes-screen), image.service.ts, property.service.ts, sharedService.ts, Javascripts
-- Lorybilo02 --> Angular Components (admin, feedback, login-screen, myannouncement, signin-screen, terms), auth.service.ts, data.service.ts, RegisterServlet, JwUtil
-- Sim23F --> DAOs, DataBase, DBManager, map-selector-home Component, Model, Proxies, REST Controllers, Servlets 
+- [JoCon03](https://github.com/JoCon03) --> Angular Components (announcement-screen, buy-screen, feedback, home-page, map-selector, publishes-screen), image.service.ts, property.service.ts, sharedService.ts, Javascripts
+- [Lorybilo02](https://github.com/Lorybilo02) --> Angular Components (admin, feedback, login-screen, myannouncement, signin-screen, terms), auth.service.ts, data.service.ts, RegisterServlet, JwUtil
+- [Sim23F](https://github.com/Sim23F) --> DAOs, DataBase, DBManager, map-selector-home Component, Model, Proxies, REST Controllers, Servlets 
 
 The DataBase has not been committed in this repository.
 
